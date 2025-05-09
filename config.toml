@@ -23,16 +23,49 @@ disableKinds = ["taxonomy"]
 # deprecated directories
 ignoreFiles = []
 
+# Override module mounts, mainly so that we can update fontawesome.
+# NOTE: this is based on docsy's config.yaml from v0.6.0, and must be updated if the docsy theme ever is.
+#       https://github.com/google/docsy/blob/v0.6.0/config.yaml#L24-L38
+[module]
+
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+
+  [[module.mounts]]
+    source = "node_modules/bootstrap"
+    target = "assets/vendor/bootstrap"
+
+  [[module.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free"
+    target = "assets/vendor/Font-Awesome"
+
+  [[module.mounts]]
+    source = "i18n"
+    target = "i18n"
+
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+  [[module.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free/webfonts"
+    target = "static/webfonts"
+
 ###############################################################################
 # Hugo - Top-level navigation (horizontal)
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "Kubeflow Summit"
+    name = "Kubeflow Virtual Symposium"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>April 1st, 2025</span> <span class='badge badge-warning'>London, England</span> "
-    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/kubeflow-summit/"
+    post = "<br><span class='badge badge-warning'>July 9th, 2025</span> <span class='badge badge-warning'>Virtual</span> "
+    url = "https://community.cncf.io/events/details/cncf-virtual-project-events-hosted-by-cncf-presents-kubeflow-virtual-planning-symposium-2025/"
   [[menu.main]]
     name = "GSoC 2025"
     weight = -900
@@ -85,7 +118,7 @@ section = [ "HTML" ]
 
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style = "tango"
+    noClasses = false
     guessSyntax = "true"
 
 ###############################################################################
@@ -179,6 +212,10 @@ enable = true
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
+    version = "v1.10"
+    githubbranch = "v1.10-branch"
+    url = "https://v1-10-branch.kubeflow.org"
+  [[params.versions]]
     version = "v1.9"
     githubbranch = "v1.9-branch"
     url = "https://v1-9-branch.kubeflow.org"
@@ -268,15 +305,30 @@ enable = true
   # Links in footer
   [params.links]
     [[params.links.user]]
-      name = "Twitter"
-      url = "https://twitter.com/kubeflow/"
-      icon = "fab fa-twitter"
-      desc = "Follow us on Twitter to get the latest news!"
+      name = "X"
+      url = "https://x.com/kubeflow/"
+      icon = "fa-brands fa-x-twitter"
+      desc = "Follow us on X to get the latest news!"
+    [[params.links.user]]
+      name = "YouTube"
+      url = "https://www.youtube.com/@KubeflowCommunity"
+      icon = "fab fa-youtube"
+      desc = "Subscribe to our YouTube channel for the latest videos!"
+    [[params.links.user]]
+      name = "LinkedIn"
+      url = "https://www.linkedin.com/company/kubeflow"
+      icon = "fab fa-linkedin"
+      desc = "Connect with us on LinkedIn for updates and networking!"
     [[params.links.user]]
       name = "Kubeflow Slack"
       url = "/docs/about/community/#kubeflow-slack-channels"
       icon = "fab fa-slack"
       desc = "Join the Kubeflow Slack Workspace!"
+    [[params.links.user]]
+      name = "Bluesky"
+      url = "https://bsky.app/profile/kubefloworg.bsky.social"
+      icon = "fa-brands fa-bluesky"
+      desc = "Follow us on Bluesky for the latest updates!"
     [[params.links.user]]
       name = "Kubeflow Mailing List"
       url = "/docs/about/community/#kubeflow-mailing-list"
@@ -285,5 +337,5 @@ enable = true
     [[params.links.user]]
       name = "Kubeflow Community Calendars"
       url = "/docs/about/community/#kubeflow-community-meetings"
-      icon = "fa fa-calendar"
+      icon = "fa fa-calendar-day"
       desc = "View the Kubeflow Community Calendars!"

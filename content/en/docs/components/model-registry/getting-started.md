@@ -7,8 +7,6 @@ weight = 20
 This guide shows how to get started with Model Registry and run a few examples using the
 command line or Python clients.
 
-At this time, the Model Registry does not include a web-based User Interface (UI), therefore this documentation focuses on backend services and APIs.
-
 For an overview of the logical model of model registry, check the [Model Registry logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
 The logical model is exposed via the Model Registry [REST API](reference/rest-api).
 
@@ -165,8 +163,44 @@ isvc = kserve.V1beta1InferenceService(
 ks_client = kserve.KServeClient()
 ks_client.create(isvc)
 ```
+Alternatively, you can create the same InferenceService using a YAML manifest:
+
+```yaml
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: iris-model
+  namespace: kubeflow-user-example-com  # Replace if different from kserve.utils.get_default_target_namespace()
+  labels:
+    modelregistry/registered-model-id: "MODEL_ID"    # Replace with actual model.id value
+    modelregistry/model-version-id: "VERSION_ID"      # Replace with actual version.id value
+spec:
+  predictor:
+    model:
+      storageUri: "model-registry://iris/v1"  # protocol format: model-registry://{modelName}/{modelVersion}
+      modelFormat:
+        name: "sklearn"          # Replace if needed with art.model_format_name from model registry (typically one of https://kserve.github.io/website/latest/modelserving/v1beta1/serving_runtime)
+        version: "1"    # Replace if needed with art.model_format_version from model registry
+```
 
 The InferenceService is now created, the CSI retrieves the latest artifact data associated with the model version from the Model Registry, and then downloads the model from its URI.
+
+## Using the Model Registry UI
+
+In addition to the command line and Python clients, you can also use the Model Registry UI to manage your models. The UI provides an intuitive interface for registering, updating, and querying models and their metadata.
+
+   <img src="/docs/components/model-registry/images/model-registry-ui-main.png"
+   alt="Model Registry Overview"
+   class="mt-3 mb-3 border rounded">
+
+To access the Model Registry UI, navigate to the Kubeflow central dashboard and select the Model Registry component. From there, you can perform various actions such as:
+
+- Registering new models
+- Viewing registered models and their versions
+- Updating model metadata
+- Deleting models
+
+For detailed instructions on using the Model Registry UI, refer to the [Model Registry UI documentation](https://github.com/kubeflow/model-registry/blob/main/clients/ui/README.md).
 
 ## Next steps
 

@@ -12,12 +12,12 @@ For example, the below image shows the Kubeflow Central Dashboard with a custom 
 
 <img src="/docs/images/dashboard/custom-menu-item.png" 
      alt="Kubeflow Central Dashboard - Customize Menu Items"
-     class="mt-3 mb-3 border border-info rounded">
+     class="mt-3 mb-3 border rounded">
 </img>
 
 ## Central Dashboard ConfigMap
 
-The Kubeflow Central Dashboard is configured using a Kubernetes ConfigMap.
+The Kubeflow Central Dashboard is configured using a Kubernetes [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/).
 
 The `CD_CONFIGMAP_NAME` environment variable on the central-dashboard Deployment specifies the name of the ConfigMap (`centraldashboard-config` by default).
 
@@ -121,7 +121,7 @@ data:
 
 ### Create VirtualService
 
-If you have a non-Kubeflow application running on the cluster, you may expose it through the Kubeflow Central Dashboard by creating a `VirtualService` on the Kubeflow Istio Gateway.
+If you have a non-Kubeflow application running on the cluster, you may expose it through the Kubeflow Central Dashboard by creating a [`VirtualService`](https://istio.io/latest/docs/reference/config/networking/virtual-service/) on the Kubeflow Istio Gateway.
 To do this, your app must have an injected Istio sidecar and be exposed as a Kubernetes Service.
 
 For example, the below `VirtualService` exposes `Service/my-app` from the `my-namespace` namespace on the Kubeflow Istio Gateway under the path `/my-app/`:

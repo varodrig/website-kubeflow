@@ -141,8 +141,8 @@ corresponding [ML lifecycle stage](/docs/started/architecture/#kubeflow-componen
           Model Training and LLMs Fine-Tuning
         </td>
         <td>
-          <a href="https://github.com/kubeflow/training-operator">
-            <code>kubeflow/training-operator</code>
+          <a href="https://github.com/kubeflow/trainer">
+            <code>kubeflow/trainer</code>
           </a>
         </td>
       </tr>
@@ -162,7 +162,7 @@ a simplified installation and management experience for your **Kubeflow Platform
 Some can be deployed on multiple [Kubernetes distributions](https://kubernetes.io/partners/#conformance),
 while others target a specific platform (e.g. EKS or GKE).
 
-{{% alert title="" color="dark" %}}
+{{% alert title="" color="info" %}}
 Packaged distributions are developed and supported by their respective maintainers.
 The Kubeflow community <strong>does not endorse or certify</strong> any specific distribution.
 {{% /alert %}}
@@ -339,30 +339,19 @@ The following table lists distributions which are <em>maintained</em> by their r
 
 ### Kubeflow Manifests
 
-The Kubeflow Manifests are aggregated by the Manifests Working Group and are intended to be
+The Kubeflow manifests are a collection of community maintained manifests to install Kubeflow in popular Kubernetes clusters such as Kind (locally), Minikube (locally), Rancher, EKS, AKS, GKE.
+They are aggregated by the Manifests Working Group and are intended to be
 used by users with Kubernetes knowledge and as the base of packaged distributions.
 
 Kubeflow Manifests contain all Kubeflow Components, Kubeflow Central Dashboard, and other Kubeflow
 applications that comprise the **Kubeflow Platform**. This installation is helpful when you want to
 try out the end-to-end Kubeflow Platform capabilities.
+ 
+If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases): 
+- [**Kubeflow 1.10:**](/docs/releases/kubeflow-1.10/)
+  - [`v1.10.0`](https://github.com/kubeflow/manifests/tree/v1.10.0#installation)
 
-Users may choose to install the manifests for a specific Kubeflow version by following the
-instructions in the `README` of the [`kubeflow/manifests`](https://github.com/kubeflow/manifests) repository.
-
-- [**Kubeflow 1.9:**](/docs/releases/kubeflow-1.9/)
-  - [`v1.9-branch`](https://github.com/kubeflow/manifests/tree/v1.9-branch#installation) <sup>(development branch)</sup>
-  - [`v1.9.1`](https://github.com/kubeflow/manifests/tree/v1.9.1#installation)
-- [**Kubeflow 1.8:**](/docs/releases/kubeflow-1.8/)
-  - [`v1.8-branch`](https://github.com/kubeflow/manifests/tree/v1.8-branch#installation) <sup>(development branch)</sup>
-  - [`v1.8.1`](https://github.com/kubeflow/manifests/tree/v1.8.1#installation)
-
-{{% alert title="Warning" color="warning" %}}
-The Kubeflow manifests provide a quick way to get a minimum viable Kubeflow Platform up and running.
-The Kubeflow community support for Kubeflow manifests is only best-effort, non-commercial and not guaranteed for environment-specific issues or custom configurations.
-Nevertheless, we welcome contributions and bug reports very much.
-
-For commercial production-level usage and support there are many options. You can use a third-party commercial distribution, hire consultants or build up the knowledge yourself to maintain and extend your Kubeflow installation.
-{{% /alert %}}
+You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
 
 ## Next steps
 
